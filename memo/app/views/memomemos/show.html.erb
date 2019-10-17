@@ -1,0 +1,28 @@
+<div class="container">
+
+<div class="center jumbotron">
+
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
+
+<h3>詳細ページ</h3>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @memomemo.id %></td>
+  </tr>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @memomemo.title %></td>
+  </tr>
+  <tr>
+    <th>メッセージ</th>
+    <td><%= @memomemo.content %></td>
+  </tr>
+</table>
+
+<%= link_to 'メモを編集する', edit_memomemo_path(@memomemo), class: 'btn btn-default' %>
+<%= link_to 'メモを削除する', @memomemo, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+</div>
+</div>

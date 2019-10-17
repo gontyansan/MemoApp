@@ -1,0 +1,25 @@
+<!--いかが修正後-->
+<div class="container">
+<div class="center jumbotron">
+  <h1>メモ一覧</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>メモ内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @memomemos.each do |memomemo| %>
+        <tr>
+          <td><%= link_to memomemo.id, memomemo %></td>
+          <td><%= memomemo.title %></td>
+          <td><%= memomemo.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+
