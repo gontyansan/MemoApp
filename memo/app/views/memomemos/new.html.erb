@@ -1,8 +1,11 @@
 <div class="container">
 <div class=" jumbotron">
   <% if flash[:danger] %>
+    <div class="alert alert-danger">
     <p><%= flash[:danger] %></p>
+    </div>
   <% end %>
+
 
 
   <h1>メモの新規作成</h1>

@@ -2,7 +2,7 @@ class MemomemosController < ApplicationController
   before_action :find_memomemo, only: [:show, :edit, :update, :destroy]
   
   def index
-    @memomemos = Memomemo.all
+    @memomemos = Memomemo.order(id: "DESC").page(params[:page]).per(10)
   end
   
   def show
