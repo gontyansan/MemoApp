@@ -14,6 +14,7 @@ class MemomemosController < ApplicationController
   end
   
   def create
+   
     @memomemo = Memomemo.new(memomemo_params)
 
     if @memomemo.save
