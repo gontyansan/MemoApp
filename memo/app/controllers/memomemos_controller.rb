@@ -31,8 +31,9 @@ class MemomemosController < ApplicationController
   end
   
   def update
-    @memomemo = Memomemo.find(params[:id])
     
+    @memomemo = Memomemo.find(params[:id])
+  # byebug 
     if @memomemo.update(memomemo_params)
       flash[:success] = 'メモを更新しました'
       redirect_to @memomemo

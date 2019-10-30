@@ -3,12 +3,7 @@ require 'rails_helper'
 describe MemomemosController do
     
   describe "POST /memos" do
-    # before do
-    #   @params = build(:memomemo)
-    # end
-    # subject { post :create, params: params }
-    # let(:params) { build(:memomemo) }
-    
+
     subject { post(:create, params: params) }
     let(:params) { { memomemo: attributes_for(:memomemo) } }
 
@@ -16,10 +11,22 @@ describe MemomemosController do
     it "メモが作成できる" do
       
       expect{ subject }.to change { Memomemo.count }.by(1)
-       
-      # expect(post :create, @params).to change { Memomemo.count }.by(1)
-    #expect(post :create, params: {memomemo: {title: "うんこちゃん", content: "ねもうすだよなあ？"}}).to change { Memomemo.count }.by(1)
     end
-    
   end
+      
+  describe "PATCH /memos/:id" do
+    
+    subject { patch(:update, params: params) }
+
+    let(:params) { { id: memomemo.id, memomemo: { title: "更新のテストタイトル", content: "更新のテスト内容" } } }
+    let(:memomemo) { create(:memomemo) }
+
+    it "メモを更新できる" do
+
+      expect { subject }.to change { Memomemo.find(memomemo.id).title }.from(memomemo.title).to(params[:memomemo][:title]) &
+                            change { Memomemo.find(memomemo.id).content }.from(memomemo.content).to(params[:memomemo][:content])
+      expect(response).to have_http_status(302)
+   end
+  end
+  
 end
