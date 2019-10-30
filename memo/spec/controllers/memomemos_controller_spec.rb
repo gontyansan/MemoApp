@@ -26,7 +26,22 @@ describe MemomemosController do
       expect { subject }.to change { Memomemo.find(memomemo.id).title }.from(memomemo.title).to(params[:memomemo][:title]) &
                             change { Memomemo.find(memomemo.id).content }.from(memomemo.content).to(params[:memomemo][:content])
       expect(response).to have_http_status(302)
-   end
+    end
+  end
+  
+  describe "DELETE /memos/:id" do
+    
+    subject { delete(:destroy, params: params) }
+    
+    let(:params) { { id: memomemo.id } }
+    let!(:memomemo) { create(:memomemo) }
+    
+
+    it "メモを削除できる" do
+
+      expect{ subject }.to change { Memomemo.count }.by(-1)
+      expect(response).to have_http_status(302)
+    end
   end
   
 end
